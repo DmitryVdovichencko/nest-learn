@@ -11,7 +11,10 @@ export class ProductsService {
 	getProduct(id: number) {
 		return this.products.filter((p) => p.id === id);
 	}
-
+	createProducts(products: Array<Product>) {
+		this.products.push(...products);
+		return this.products;
+	}
 	createProduct(product) {
 		this.products.push({ ...product });
 		return this.products;
