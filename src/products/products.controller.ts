@@ -26,24 +26,29 @@ export class ProductsController {
 	@Get(':id')
 	getProduct(@Param() params) {
 		console.log('get a single product', params.id);
-		return this.productsService.getProducts().filter((p) => p.id == params.id);
+		return this.productsService
+			.getProducts()
+			.filter((p) => p.id == params.id)[0];
 	}
 
 	@Post()
 	createProduct(@Body() product: ProductDto) {
 		console.log('create product', product);
 		this.productsService.createProduct(product);
+		return { errorCode: 0 };
 	}
 
 	@Put()
 	updateProduct(@Body() product: ProductDto) {
 		console.log('update product', product);
 		this.productsService.updateProduct(product);
+		return { errorCode: 0 };
 	}
 
 	@Delete()
 	deleteProduct(@Body() product: ProductDto) {
 		console.log('delete product', product.id);
 		this.productsService.deleteProduct(product.id);
+		return { errorCode: 0 };
 	}
 }

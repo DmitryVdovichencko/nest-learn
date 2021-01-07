@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from  '../interfaces/product.interface';
+import { Product } from '../interfaces/product.interface';
 @Injectable()
 export class ProductsService {
 	private readonly products: Product[] = [];
@@ -12,20 +12,21 @@ export class ProductsService {
 		return this.products.filter((p) => p.id === id);
 	}
 
-	// createProduct(product) {
-	// 	this.products = [...this.products, { ...product }];
-	// }
+	createProduct(product) {
+		this.products.push({ ...product });
+		return this.products;
+	}
 
-	// updateProduct(product) {
-	// 	this.products = this.products.map((p) => {
-	// 		if (p.id == product.id) {
-	// 			return { ...product };
-	// 		}
-	// 		return p;
-	// 	});
-	// }
+	updateProduct(product) {
+		return this.products.map((p) => {
+			if (p.id == product.id) {
+				return { ...product };
+			}
+			return p;
+		});
+	}
 
-	// deleteProduct(id) {
-	// 	this.products = this.products.filter((p) => p.id != id);
-	// }
+	deleteProduct(id) {
+		return this.products.filter((p) => p.id != id);
+	}
 }
